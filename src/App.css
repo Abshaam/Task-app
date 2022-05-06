@@ -1,0 +1,36 @@
+.adding{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 2em;
+}
+
+.adding input{
+  width: 45%;
+  height: 3em;
+  border: none;
+  border-radius: 7px;
+  box-shadow: 0px 0px 1px 1px rgb(0,0,0);
+  
+}
+
+.adding button{
+  margin-top: 20px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 0px 1px 1px rgb(0,0,0);
+  padding: 5px;
+}
+
+button:hover {
+  background-color: rgb(199, 184, 184);
+  transition: 0.7s;
+}
+
+body{
+  background-image: url('./images/photo-1648146704560-1c251e0f8015.avif');
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-width: 100vh;
+}

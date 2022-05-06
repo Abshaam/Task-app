@@ -1,0 +1,50 @@
+
+.wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0px 0px 6px 0px gray;
+    margin: 2rem 10rem;
+    padding: 0 1rem
+
+     }
+
+.status-button{
+    margin-right: 1rem;
+    background-color: rgb(233, 215, 167);
+    padding: 10px;
+    border: none;
+    border-radius: 7px;
+    box-shadow: 0px 0px 1px 1px rgb(0,0,0);
+    min-width: 7em;
+}
+
+.signout{
+    margin-left: 8rem;
+    width: 9%;
+    margin-top: 20px;
+    padding: 6px;
+    border: none;
+    border-radius: 7px;
+    box-shadow: 0px 0px 1px 1px rgb(75, 72, 72);
+    background-color: rgb(233, 215, 167);
+}
+
+.delete-button{
+    background-color: rgb(238, 185, 185);
+    padding: 10px;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    box-shadow: 0px 0px 2px 2px rgb(233, 149, 149);
+    min-width: 7em;
+}
+
+.button{
+    display: flex;
+}
+
+.none{
+    text-align: center;
+    margin-top: 20px;
+}
