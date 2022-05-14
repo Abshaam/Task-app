@@ -1,6 +1,6 @@
 import './App.css';
 import React, {  useEffect,useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, NavLink } from 'react-router-dom';
 import axios from 'axios';
 import Todos from './pages/todos';
 
@@ -120,11 +120,19 @@ export default function Task() {
   
   return (
     < >
+     <div>
      <button
       className='signout'
        onClick={logout}>
          logout
       </button>
+
+      <button
+      className='signout'>
+      <NavLink to = "/change"> Change password </NavLink>
+      </button>
+     </div>
+     
     <div className='adding' >
       {error && (
         <div style= {{color: "red", fontSize: "3rem", textAlign: "center"}}> {errorMessage} </div>

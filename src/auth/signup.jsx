@@ -10,7 +10,8 @@ import pic1 from '../images/resarch.avif'
     const [password, setPassword] = useState ("");
     const [confirmpassword, setConfirmpassword] = useState("")
     const [errorMessage, setErrorMessage]= useState("")
-    const [passwordError, setPasswordError]= useState("")
+    
+    
     
     const navigate = useNavigate();
 
@@ -33,14 +34,9 @@ import pic1 from '../images/resarch.avif'
           console.log(response)
           console.log(errorMessage)
 
-          if (data.includes('400')){
+          if (data.toString().includes('400')){
             setErrorMessage('please enter an email');
           }
-
-          if (data === "Please enter a password"){
-            setPasswordError(data)
-          }
-
 
           console.log('data');
           if (data.user) {
@@ -48,15 +44,7 @@ import pic1 from '../images/resarch.avif'
               navigate("/login", {replace: true});
           }
       }catch (error){
-          console.log(error.meessage);
-
-          if(error.meessage.includes('409')){
-            setErrorMessage('email already exist');
-          }
-
-          if(error.meessage.includes('409')){
-            setErrorMessage('email already exist');
-          }
+          console.log(error);
       }
   };
 

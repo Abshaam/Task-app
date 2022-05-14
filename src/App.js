@@ -7,6 +7,9 @@ import Signup from './auth/signup'
 import Login from './auth/login';
 // import Logout from './Task';
 import Task from './Task';
+import ChangePassword from './auth/changePassword';
+import PasswordReset from './pages/passwordReset';
+import ForgotPassword from './auth/forgotPassword';
 
 function App() {
   return (
@@ -15,6 +18,10 @@ function App() {
           <Route path ='/add' element={<Task/>}/>
           <Route path  ='/login' element={<Login/>}/>
           <Route path ='/signup' element={<Signup/>}/>
+          <Route path ='/change' element={<ChangePassword/>}/>
+          <Route path ='/reset' element={<PasswordReset/>}/>
+          <Route path ='/forgot' element={<ForgotPassword/>}/>
+          
         </Routes>
   );
 }

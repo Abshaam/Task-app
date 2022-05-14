@@ -15,6 +15,9 @@ export default function Landing(){
                   <NavLink to = "/about"> About </NavLink>
                   <NavLink to = "/signup"> Signup </NavLink>
                   <NavLink to = "/login"> Login </NavLink>
+                  <NavLink to = "/reset"> Reset </NavLink>
+                  
+                 
                   
             
             </ul>

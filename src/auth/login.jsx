@@ -1,6 +1,6 @@
 import '../css/login.css'
 import React,{useState} from 'react';
-import {useNavigate} from 'react-router-dom'
+import {useNavigate, NavLink} from 'react-router-dom'
 import axios from 'axios';
 import pic7 from '../images/time.jpg'
 
@@ -38,7 +38,7 @@ export default function Login(){
         }catch (error){
             console.log(error);
         }
-    };
+    };  
 
 
     return(
@@ -47,6 +47,11 @@ export default function Login(){
                <h1>Don't have an account?</h1>
                <button onClick={() => navigate('/signup')}> Signup </button>
            </div>
+
+           <button className='back-home'>
+            <NavLink to = "/"> Home </NavLink>
+            </button>
+
           <div className='log'>
             <div className='up'>
               <img src={pic7} alt=''/>
@@ -71,6 +76,12 @@ export default function Login(){
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   />
+
+                  <div className='forget'>
+                     <h1> forget password?</h1>
+                     <button onClick={() => navigate('/forgot')}> enter email </button>
+
+                  </div>
 
                   <button 
                    type="submit"
