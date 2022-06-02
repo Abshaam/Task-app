@@ -1,31 +1,41 @@
+// requiring all modules
 import '../css/login.css'
 import React,{useState} from 'react';
 import {useNavigate, NavLink} from 'react-router-dom'
 import axios from 'axios';
 import pic7 from '../images/time.jpg'
 
+// export default makes the variable available to import
 export default function Login(){
 
     const [email, setEmail] = useState ("");
     const [password, setPassword] = useState ("");
+    const [error, setError] = useState('');
+    const [message, setMessage] = useState("");
+   
 
+    // usenavigate is responsible for redirection
     const navigate = useNavigate()
 
+    // this is an axios request to communicate to the database
     const login = async (e) =>{
         try{
             e.preventDefault();
-            const response = await axios.post(
+            const res = await axios.post(
                 "/users/login",
                 {
                     email,
                     password
-                },
+                }, { withCredentials: true}
                  
             );
 
-            const {data} = response;
+            // assigning a variable to the feedback from the server
+            const {data} = res;
+            setMessage(res.message)
             console.log(data.user);
 
+            // when user inputs the details the input fields becomes empty after submitting
             setEmail('')
             setPassword('')
 
@@ -36,7 +46,34 @@ export default function Login(){
                 window.localStorage.setItem("name", JSON.stringify(data.user.name));
             }
         }catch (error){
-            console.log(error);
+            console.log(error.response.data);
+            if (
+              error.response &&
+              error.response.status >= 400 &&
+              error.response.status <= 500
+            ){
+              setError(error.response.data.message)
+            }
+
+            if (error.response.data === "Authentication failed") {
+
+                return(setError (error.response.data))
+            }
+
+            if(error.message.includes('201')) {
+                setMessage(error.response.data)
+              }
+
+            // if(error.message.includes('400')) {
+            //     setMessage(error.response.data)
+            //   }
+
+            
+
+            // if (error.response.data === "Authentication failed") {
+
+            //     return(setPasswordError (error.response.data))
+            // }
         }
     };  
 
@@ -51,6 +88,7 @@ export default function Login(){
            <button className='back-home'>
             <NavLink to = "/"> Home </NavLink>
             </button>
+         
 
           <div className='log'>
             <div className='up'>
@@ -59,9 +97,13 @@ export default function Login(){
 
             <div className='login'>
               <h1>Login</h1>
+
+              {message && <div className='error'> { message } </div>}
               
               
               <form onSubmit={login}>
+
+              {error && <div className='error'> { error} </div>}
 
                  <input 
                   type="email" 
@@ -69,6 +111,7 @@ export default function Login(){
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   />
+                  {/* {emailError && <div> { emailError} </div>} */}
 
                 <input 
                   type="password" 
@@ -76,6 +119,8 @@ export default function Login(){
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   />
+                  
+                  
 
                   <div className='forget'>
                      <h1> forget password?</h1>
@@ -85,7 +130,8 @@ export default function Login(){
 
                   <button 
                    type="submit"
-                   disabled={!email || !password }>
+                  //  disabled={!email || !password }
+                  >
                       Login
                    </button>
               </form>

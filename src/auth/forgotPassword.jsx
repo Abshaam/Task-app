@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import '../css/forgotPassword.css'
 import pic7 from '../images/notingprojects.avif'
 
@@ -8,23 +8,32 @@ export default function ForgotPassword(){
     const [email, setEmail] = useState("");
     const [success, setSuccess] = useState(false);
     const [error, setError]= useState("");
+    
+    const navigate = useNavigate()
 
     const change = async (e) => {
+      try {
         e.preventDefault();
-        const response = await axios.put(`users/forgot-password/${email}`,{
-            email:email
-        });
+        await axios.put(`users/forgot-password/${email}`);
 
-        console.log(response);
+        setSuccess(true);
+
+        setTimeout(() =>{
+          navigate('/');
+      }, 6000)
+
+      } catch (error) {
+          console.log(error);
+          setError(error.response.data.msg);
+      }
+       
     }
 
-    // setSuccess(true);
 
     return success ? (
         <div className="success">
             <h1>Success</h1>
             <p> Please check email for reset link</p>
-            {/* <button onClick={() => redirect('/login')}> Login </button> */}
         </div>
     ) : (
         <>

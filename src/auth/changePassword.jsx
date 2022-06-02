@@ -35,7 +35,7 @@ export default function ChangePassword(){
             setSuccess(true);
 
             setTimeout(() =>{
-                navigate('/');
+                navigate('/login');
             }, 6000)
         } catch (error) {
             console.log(error);
@@ -57,23 +57,17 @@ export default function ChangePassword(){
     }
 
     return success ? (
-        <>
-        <div>
-            <h1>Password successfully changed</h1>
-            <p>Please login with new password</p>
+
+        <div className='success'>
+            <h1>Password changed</h1>
+            <p>Login with new password</p>
         </div>
 
-        <div className='sign-heading'>
-            <h1>Login with new password</h1>
-            <button onClick={() => navigate('/login')}> Login </button>
-        </div>
-        </>
     ) : (
         <>
         <div className='sign-heading'>
             <h1>Change Password</h1>
             {/* <button onClick={() => navigate('/signup')}> Signup </button> */}
-            {error && <div className='err'>{error} </div>}
         </div>
 
         <button className='back-home'>
@@ -88,7 +82,7 @@ export default function ChangePassword(){
            <h1>Change Password</h1>
            
            
-           <form onSubmit={change}>
+           <form className='change' onSubmit={change}>
 
               <input 
                type="password" 
@@ -96,6 +90,8 @@ export default function ChangePassword(){
                value={oldPassword}
                onChange={(e) => setOldPassword(e.target.value)}
                />
+
+            {error && <div className='err'>{error} </div>}
 
              <input 
                type="password" 
@@ -113,7 +109,7 @@ export default function ChangePassword(){
 
                <button 
                 type="submit"
-                // disabled={!email || !password }
+                disabled={!oldPassword || !newPassword }
                 >
                    change password
                 </button>

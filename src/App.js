@@ -1,5 +1,5 @@
 import './App.css';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route} from 'react-router-dom';
 
 // importing all required components to render
 import Landing from './pages/landing';
@@ -10,6 +10,7 @@ import Task from './Task';
 import ChangePassword from './auth/changePassword';
 import PasswordReset from './pages/passwordReset';
 import ForgotPassword from './auth/forgotPassword';
+import EmailVerify from './pages/emailVerify'
 
 function App() {
   return (
@@ -21,6 +22,9 @@ function App() {
           <Route path ='/change' element={<ChangePassword/>}/>
           <Route path ='/reset' element={<PasswordReset/>}/>
           <Route path ='/forgot' element={<ForgotPassword/>}/>
+          <Route path = '/reset-password/:resetToken' element= {<PasswordReset/>}/>
+          <Route path='/users/:id/verify/:token' element = {<EmailVerify/>}/>
+
           
         </Routes>
   );

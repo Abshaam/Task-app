@@ -16,14 +16,14 @@ export default function PasswordReset(){
     const update =async (e) =>{
         try {
             e.preventDefault();
-            await axios.put(`/users/${resetToken}/reset-password`, {
+            await axios.put(`/users/reset-password/${resetToken}`, {
                 newPassword,
             });
 
             setSuccess(true);
 
             window.setTimeout(() =>{
-                redirect('/add');
+                redirect('/login');
             }, 6000);
 
         } catch (error) {
